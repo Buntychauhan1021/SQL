@@ -1,0 +1,166 @@
+CREATE TABLE sales_master
+(salesman_no VARCHAR(6) primary key,
+sal_name VARCHAR(20) NOT NULL,
+address VARCHAR(40)NOT NULL,
+city VARCHAR(20),
+state VARCHAR(20),
+pincode NUMBER(6),
+sal_amount NUMBER(8,2)  NOT NULL CHECK (sal_amount!=0),
+tgt_to_get NUMBER(8,2)  NOT NULL CHECK (tgt_to_get!=0),
+ytd_sales NUMBER(8,2) NOT NULL CHECK (ytd_sales!=0),
+remarks VARCHAR(30))
+
+INSERT INTO sales_master VALUES('S00001','kiran','A/14 worli','mumbai','maharashtra',400002,3000,100,50,'good');
+
+SELECT * FROM sales_master
+
+INSERT INTO sales_master VALUES('S00002','manish','65,nariman','mumbai','maharashtra',400001,3000,200,100,'good');
+INSERT INTO sales_master VALUES('S00003','ravi','p-7 bandra','mumbai','maharashtra',400002,3000,200,100,'good');
+INSERT INTO sales_master VALUES('S00004','ashish','A/5 juhu bombay','mumbai','maharashtra',400004,3000,200,150,'good');
+
+
+
+CREATE TABLE sales_master
+(salesman_no VARCHAR(6) primary key,
+sal_name VARCHAR(20) NOT NULL,
+address VARCHAR(40)NOT NULL,
+city VARCHAR(20),
+state VARCHAR(20),
+pincode NUMBER(6),
+sal_amount NUMBER(8,2)  NOT NULL CHECK (sal_amount!=0),
+tgt_to_get NUMBER(8,2)  NOT NULL CHECK (tgt_to_get!=0),
+ytd_sales NUMBER(8,2) NOT NULL CHECK (ytd_sales!=0),
+remarks VARCHAR(30))
+
+INSERT INTO sales_master VALUES('S00001','kiran','A/14 worli','mumbai','maharashtra',400002,3000,100,50,'good');
+
+SELECT * FROM sales_master
+
+INSERT INTO sales_master VALUES('S00002','manish','65,nariman','mumbai','maharashtra',400001,3000,200,100,'good');
+INSERT INTO sales_master VALUES('S00003','ravi','p-7 bandra','mumbai','maharashtra',400002,3000,200,100,'good');
+INSERT INTO sales_master VALUES('S00004','ashish','A/5 juhu bombay','mumbai','maharashtra',400004,3000,200,150,'good');
+
+
+
+CREATE TABLE sales_order
+(s_order_no VARCHAR(6) primary key,
+s_order_date DATE ,
+client_no VARCHAR(6)NOT NULL,
+dely_add VARCHAR(25),
+salesman_no VARCHAR(6),
+dely_type CHAR(1),
+billed_yn CHAR(1),
+dely_date DATE)
+ALTER TABLE sales_order
+ADD FOREIGN KEY (CLIENT_NO) REFERENCES CLIENTMASTER(CLIENT_NO);
+SELECT * from CLIENTMASTER
+ALTER TABLE CLIENTMASTER
+ADD primary key (CLIENT_NO);
+
+SELECT * from sales_order
+
+
+
+
+
+
+
+
+
+
+
+CREATE TABLE salesman
+(salesman_id VARCHAR(6),
+name VARCHAR(20),
+city VARCHAR(20),
+commission NUMBER(2,2))
+
+
+CREATE TABLE customer
+(customer_id VARCHAR(6),
+customer_name VARCHAR(20),
+city VARCHAR(20),
+grade VARCHAR(10),
+salesman_id VARCHAR(6))
+
+
+create table orders(
+Ord_no number(10),
+Purch_amt number(10,2),
+or_date DATE,
+customer_id number(10),
+salesman_id number(10)
+)
+
+insert into orders
+values(70001,150.5,to_date('2012-10-05', 'yyyy-mm-dd'), 3005,5002);
+
+insert into orders
+values(70009,270.65,to_date('2012-09-10', 'yyyy-mm-dd'), 3001,5005);
+
+insert into orders
+values(70002,65.26,to_date('2012-10-05', 'yyyy-mm-dd'), 3002,5001);
+
+insert into orders
+values(70004,110.5,to_date('2012-08-17', 'yyyy-mm-dd'), 3009,5003);
+
+insert into orders
+values(70007,948.5,to_date('2012-09-10', 'yyyy-mm-dd'), 3005,5002);
+
+insert into orders
+values(70005,2400.6,to_date('2012-07-27', 'yyyy-mm-dd'), 3007,5001);
+
+insert into orders
+values(70008,5760,to_date('2012-09-10', 'yyyy-mm-dd'), 3002,5001);
+
+insert into orders
+values(70010,1983.43,to_date('2012-10-10', 'yyyy-mm-dd'), 3004,5006);
+
+
+INSERT INTO salesman VALUES(50001,'james hong','new york',0.15);
+INSERT INTO salesman VALUES(50002,'nail knite','paris',0.13);
+INSERT INTO salesman VALUES(50005,'pit alex',' london',0.14);
+INSERT INTO salesman VALUES(50006,'mc lyon','paris',0.11);
+INSERT INTO salesman VALUES(50007,'paul adom','rome',0.12);
+INSERT INTO salesman VALUES(50003,'lauson hen','san jose',0.10);
+
+
+INSERT INTO customer VALUES(30002,'nick rimando','new york',100,50001);
+INSERT INTO customer VALUES(30007,'brad davis','new york',200,50001);
+INSERT INTO customer VALUES(30005,'grahm zusi ','calfornia',200,50002);
+INSERT INTO customer VALUES(30008,'julian green','london',300,50002);
+INSERT INTO customer VALUES(30004,'jonson','paris',300,50006);
+INSERT INTO customer VALUES(30009,'cameron','berlin',100,50003);
+INSERT INTO customer VALUES(30003,'altidor','moscow',200,50007);
+INSERT INTO customer VALUES(30001,'guzan','london',100,50005);
+
+
+SELECT name,customer_name from salesman
+inner join customer
+ON salesman.city=customer.city;
+
+
+SELECT * FROM salesman,customer 
+WHERE salesman.SALESMAN_ID = customer.SALESMAN_ID; 
+
+
+
+
+
+select Ord_no,Purch_amt,customer_name,city from customer,orders where orders.Purch_amt between 500 and 2000
+
+
+
+
+select customer.customer_name from salesman,customer where salesman.commission >0.12 
+
+select *from salesman,customer where salesman.city != customer.city AND salesman.commission>0.12
+
+SELECT * FROM customer ORDER BY customer_id  asc;
+
+
+SELECT * FROM customer ORDER BY grade  asc;
+
+
+
+
