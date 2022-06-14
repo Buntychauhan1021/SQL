@@ -1,0 +1,41 @@
+create table EMP2(Empid NUMBER,name VARCHAR2(10),doj DATE, jobid VARCHAR(20), salary NUMBER);
+insert into emp2 VALUES(100,'aman jain',TO_DATE('17-june-2017','dd-mm-yyyy'),'ad_pres',24000.00);
+
+insert into emp2 VALUES(101,'yash kumar',TO_DATE('15-july-2019','dd-mm-yyyy'),'ad_vp',17000.00);
+
+insert into emp2 VALUES(102,'ayushi',TO_DATE('12-aug-2017','dd-mm-yyyy'),'it_prog',9000.00);
+
+insert into emp2 VALUES(103,'kamal',TO_DATE('15-sept-2016','dd-mm-yyyy'),'it_prog',6000.00);
+
+insert into emp2 VALUES(105,'madhav',TO_DATE('14-july-2018','dd-mm-yyyy'),'it_prog',4000.00);
+
+insert into emp2 VALUES(106,'kamal',TO_DATE('27-jun-2017','dd-mm-yyyy'),'pu_clerk',2500.00);
+
+select * from emp2
+
+
+
+
+SELECT NAME FROM EMP2
+WHERE SALARY>(SELECT SALARY FROM EMP2
+WHERE EMPID=104);
+
+SELECT NAME,SALARY,JOBID FROM EMP2
+WHERE JOBID=(SELECT JOBID FROM EMP2
+WHERE EMPID=103);
+
+SELECT * FROM EMP2
+WHERE DOJ=(SELECT DOJ FROM EMP2
+WHERE EMPID=106);
+
+SELECT * FROM EMP
+WHERE DOJ>(SELECT DOJ FROM EMP2
+WHERE EMPID=102);
+
+SELECT name , salary, jobid
+FROM emp2
+WHERE salary IN  
+( SELECT MIN(salary)  
+FROM emp2 
+GROUP BY jobid
+);
