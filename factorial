@@ -1,0 +1,11 @@
+DECLARE
+fact NUMBER :=1;
+n NUMBER :=3;
+BEGIN
+while n>0 loop
+
+fact:=fact*n;
+n:=n-1;
+END loop;
+dbms_output.put_line(fact);
+end;
