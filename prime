@@ -1,0 +1,14 @@
+DECLARE
+num NUMBER :=1231;
+rev number:=0;
+i NUMBER:=0;
+
+BEGIN
+while num!=0 loop
+i:=number %10;
+rev:=rev*10+i;
+num:=num/10;
+end loop;
+
+dbms_output.put_line(rev);
+end;
